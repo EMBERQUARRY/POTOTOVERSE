@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "pototoverse",
+  "version": "${version}",
+  "name": "Pototoverse",
+  "description": "A handcrafted potato-themed Fabric mod.",
+  "authors": [
+    "EMBERQUARRY"
+  ],
+  "contact": {
+    "homepage": "https://github.com/EMBERQUARRY/POTOTOVERSE"
+  },
+  "license": "All Rights Reserved",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "default",
+        "value": "com.emberquarry.pototoverse.PototoverseMod"
+      }
+    ]
+  },
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": "~1.20.1",
+    "java": ">=17"
+  }
+}

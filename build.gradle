@@ -1,0 +1,51 @@
+plugins {
+    id 'fabric-loom' version '1.7.2'
+    id 'maven-publish'
+}
+
+version = project.findProperty("mod_version") ?: "0.1.0"
+group = project.findProperty("maven_group") ?: "com.emberquarry"
+
+base {
+    archivesName = project.findProperty("archives_base_name") ?: "pototoverse"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 17
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+loom {
+    splitEnvironmentSourceSets()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
